@@ -66,7 +66,6 @@ declare -a FILES_TO_COPY=$(find . -type f -maxdepth 1 \
 
 FILES_TO_COPY="$FILES_TO_COPY .mjolnir"
 
-echo $FILES_TO_COPY
 main() {
 
     local i=""
@@ -79,8 +78,8 @@ main() {
         targetFile="$HOME/$(printf "%s" "$i")"
 
         if [ -e "$targetFile" ]; then
-            if [ "diff -q "$targetFile" "$sourceFile")" == "0" ]; then
-
+                if [ "$(diff -q $targetFile $sourceFile)" ]; then
+                
                 ask_for_confirmation "'$targetFile' already exists, do you want to overwrite it?"
                 if answer_is_yes; then
                     rm -rf "$targetFile"
