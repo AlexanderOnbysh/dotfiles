@@ -18,6 +18,7 @@ hotkey.bind(mash, 'P', function() application.launchorfocus('Pycharm') end)
 hotkey.bind(mash, 'M', function() application.launchorfocus('iTunes') end)
 hotkey.bind(mash, 'S', function() application.launchorfocus('Slack') end)
 hotkey.bind(mash, 'T', function() application.launchorfocus('Telegram') end)
+hotkey.bind(mash, 'L', function() application.launchorfocus('Spark') end)
 hotkey.bind(mash, '1', function() application.launchorfocus('1Password 7') end)
 
 
