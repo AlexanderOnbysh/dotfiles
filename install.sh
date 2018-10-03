@@ -64,7 +64,7 @@ declare -a FILES_TO_COPY=$(find . -type f -maxdepth 1 \
     -not -name .gitignore \
     | sed -e 's|//|/|' | sed -e 's|./.|.|')
 
-FILES_TO_COPY="$FILES_TO_COPY .mjolnir"
+FILES_TO_COPY="$FILES_TO_COPY .mjolnir iterm"
 
 main() {
 

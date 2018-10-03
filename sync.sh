@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp -r ~/{.Brewfile,.aliases,.bashrc,.mjolnir} ./
+cp -r ~/{.Brewfile,.aliases,.bashrc,.mjolnir,iterm} ./
