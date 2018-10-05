@@ -66,9 +66,16 @@ declare -a FILES_TO_COPY=$(find . -type f -maxdepth 1 \
 
 FILES_TO_COPY="$FILES_TO_COPY .mjolnir iterm"
 
+
+install_colorls() {
+    sudo apt-get install ruby-dev
+    sudo gem install colorls
+}
+
 install_zsh() {
-    execute "sh -c '$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)'"       
-    execute "chsh -s $(which zsh)"
+    sudo apt install -y zsh
+    sudo chsh $USER -s $(which zsh)
+    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 }
 
 main() {
@@ -104,6 +111,7 @@ main() {
 
 }
 
-install_zsh
+execute install_colorls
+execute install_zsh
 main
 
