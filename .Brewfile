@@ -24,6 +24,7 @@ cask 'viber'
 cask 'spectacle'
 cask 'teamviewer'
 cask 'vlc'
+cask 'font-hack-nerd-font'
 
 # mas 'Xcode', id: 497799835
 
