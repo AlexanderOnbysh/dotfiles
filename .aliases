@@ -12,4 +12,5 @@ alias ls="command ls ${colorflag}"
 
 alias clear='echo "Nope"'
 alias clean-docker='docker rm $(docker ps -a -q) && docker rmi $(docker images | grep "^<none>" | awk "{print $3})'
-
+alias ls='colorls'
+alias memory='smem -utp'
