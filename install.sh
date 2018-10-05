@@ -66,6 +66,11 @@ declare -a FILES_TO_COPY=$(find . -type f -maxdepth 1 \
 
 FILES_TO_COPY="$FILES_TO_COPY .mjolnir iterm"
 
+install_zsh() {
+    execute "sh -c '$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)'"       
+    execute "chsh -s $(which zsh)"
+}
+
 main() {
 
     local i=""
@@ -99,5 +104,6 @@ main() {
 
 }
 
+install_zsh
 main
 
