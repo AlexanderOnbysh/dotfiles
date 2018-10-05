@@ -76,6 +76,7 @@ install_zsh() {
     sudo apt install -y zsh
     sudo chsh $USER -s $(which zsh)
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
 main() {
