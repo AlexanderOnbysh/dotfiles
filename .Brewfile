@@ -49,4 +49,4 @@ brew 'zsh'
 brew 'htop'
 brew 'postgresql'
 brew 'vim'
-
+brew 'bat'

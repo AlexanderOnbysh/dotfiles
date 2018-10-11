@@ -72,6 +72,12 @@ install_colorls() {
     sudo gem install colorls
 }
 
+install_bat() {
+    wget https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-musl_0.7.1_amd64.deb
+    sudo dpkg -i bat-musl_0.7.1_amd64.deb
+    rm bat-musl_0.7.1_amd64.deb
+}
+
 install_zsh() {
     sudo apt install -y zsh
     sudo chsh $USER -s $(which zsh)
@@ -112,7 +118,11 @@ main() {
 
 }
 
-execute install_colorls
-execute install_zsh
+UNAME=$(uname | tr "[:upper:]" "[:lower:]")
+if [ "$UNAME" == "linux" ]; then
+    execute install_colorls
+    execute install_bat
+    execute install_zsh
+fi
+unset UNAME
 main
-
