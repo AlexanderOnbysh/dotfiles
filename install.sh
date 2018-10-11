@@ -126,3 +126,4 @@ if [ "$UNAME" == "linux" ]; then
 fi
 unset UNAME
 main
+source ~/.zshrc
