@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+
+function cuda() {
+    export CUDA_VISIBLE_DEVICES="$1"
+}

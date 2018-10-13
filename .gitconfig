@@ -11,7 +11,7 @@
 [credential]
 	helper = wincred
 [user]
-	email = alexander.onbysh@gmail.com
+	email = onbysh.a@gmail.com
 	name = Alexander Onbysh
 [filter "lfs"]
 	clean = git-lfs clean -- %f

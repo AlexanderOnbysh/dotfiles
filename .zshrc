@@ -17,4 +17,5 @@ source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highli
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 source ~/.aliases
+source ~/.functions
 export PATH="/usr/local/sbin:$PATH"
