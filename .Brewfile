@@ -25,6 +25,7 @@ cask 'spectacle'
 cask 'teamviewer'
 cask 'vlc'
 cask 'font-hack-nerd-font'
+cask 'polar-bookshelf'
 
 # mas 'Xcode', id: 497799835
 
