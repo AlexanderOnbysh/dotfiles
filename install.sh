@@ -57,7 +57,7 @@ print_success() {
 }
 
 # Install
-declare -a FILES_TO_COPY=$(find . -type f -maxdepth 1 \
+declare -a FILES_TO_COPY=$(find . -maxdepth 1 -type f \
     -name ".*" \
     -not -name .DS_Store \
     -not -name .git \
@@ -68,7 +68,7 @@ FILES_TO_COPY="$FILES_TO_COPY .mjolnir iterm"
 
 
 install_colorls() {
-    sudo apt-get install ruby-dev
+    sudo apt-get install -y ruby-dev
     sudo gem install colorls
 }
 
@@ -81,6 +81,7 @@ install_bat() {
 install_zsh() {
     sudo apt install -y zsh
     sudo chsh $USER -s $(which zsh)
+    export SHELL=$(which zsh)
     wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
@@ -119,6 +120,7 @@ main() {
 }
 
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
+print_info "System: $UNAME"
 if [ "$UNAME" == "linux" ]; then
     execute install_colorls
     execute install_bat
