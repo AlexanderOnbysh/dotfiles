@@ -28,9 +28,7 @@ function moveTo(win, x, y, h, w)
   win:movetounit(rect)
 end
 
-hotkey.bind(spectacle, "H", function()
-    moveTo(window.focusedwindow(), 0, 0, 0.5, 1)
-end)
+	
 
 hotkey.bind(spectacle, "J", function()
     moveTo(window.focusedwindow(), 0, 0.5, 1, 0.5)
