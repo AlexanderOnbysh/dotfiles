@@ -11,7 +11,8 @@ alias ls="command ls ${colorflag}"
 
 
 alias clear='echo "Nope"'
-alias clean-docker='docker rm $(docker ps -a -q) && docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
+alias clean-docker='docker rm $(docker ps -aq -f status=exited) && docker rmi $(docker images | grep "^<none>" | awk "{print $3}")'
 alias ls='colorls'
 alias memory='smem -utp'
 alias cat='bat'
+alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
