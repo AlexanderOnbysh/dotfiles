@@ -20,7 +20,7 @@ hotkey.bind(mash, 'S', function() application.launchorfocus('Slack') end)
 hotkey.bind(mash, 'T', function() application.launchorfocus('Telegram') end)
 hotkey.bind(mash, 'L', function() application.launchorfocus('Spark') end)
 hotkey.bind(mash, '1', function() application.launchorfocus('1Password 7') end)
-
+hotkey.bind(mash, 'Q', function() application.launchorfocus('Quiver') end)
 
 -- Move Windows
 function moveTo(win, x, y, h, w)
