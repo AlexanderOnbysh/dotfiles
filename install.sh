@@ -64,27 +64,24 @@ declare -a FILES_TO_COPY=$(find . -maxdepth 1 -type f \
     -not -name .gitignore \
     | sed -e 's|//|/|' | sed -e 's|./.|.|')
 
-FILES_TO_COPY="$FILES_TO_COPY .mjolnir iterm"
-
-
-install_colorls() {
-    sudo apt-get install -y ruby-dev
-    sudo gem install colorls
-}
 
 install_bat() {
-    wget https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-musl_0.7.1_amd64.deb
-    sudo dpkg -i bat-musl_0.7.1_amd64.deb
-    rm bat-musl_0.7.1_amd64.deb
+    if type "bat" > /dev/null; then
+        wget https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-musl_0.7.1_amd64.deb
+        sudo dpkg -i bat-musl_0.7.1_amd64.deb
+        rm bat-musl_0.7.1_amd64.deb
+    fi
 }
 
 install_zsh() {
-    sudo apt install -y zsh
-    sudo chsh $USER -s $(which zsh)
-    export SHELL=$(which zsh)
-    wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+    if type "zsh" > /dev/null; then
+        sudo apt install -y zsh
+        sudo chsh $USER -s $(which zsh)
+        export SHELL=$(which zsh)
+        wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+        git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+    fi
 }
 
 main() {
@@ -123,7 +120,6 @@ main() {
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 print_info "System: $UNAME"
 if [ "$UNAME" == "linux" ]; then
-    execute install_colorls
     execute install_bat
     execute install_zsh
 fi

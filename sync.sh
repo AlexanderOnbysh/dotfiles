@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cp -r ~/{.Brewfile,.aliases,.mjolnir,iterm,.tmux.conf,.zshrc,.gitconfig,.functions} ./
+cp -r ~/{.Brewfile,.aliases,iterm,.tmux.conf,.zshrc,.gitconfig,.functions} ./
