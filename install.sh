@@ -65,8 +65,9 @@ declare -a FILES_TO_COPY=$(find . -maxdepth 1 -type f \
     | sed -e 's|//|/|' | sed -e 's|./.|.|')
 
 
+
 install_bat() {
-    if type "bat" > /dev/null; then
+    if test -x $(which bat); then
         wget https://github.com/sharkdp/bat/releases/download/v0.7.1/bat-musl_0.7.1_amd64.deb
         sudo dpkg -i bat-musl_0.7.1_amd64.deb
         rm bat-musl_0.7.1_amd64.deb
@@ -74,13 +75,24 @@ install_bat() {
 }
 
 install_zsh() {
-    if type "zsh" > /dev/null; then
+    if test -x $(which zsh); then
         sudo apt install -y zsh
         sudo chsh $USER -s $(which zsh)
         export SHELL=$(which zsh)
         wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+    fi
+}
+
+install_linuxbrew() {
+    if test -x $(which brew); then
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+        test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+        test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+        test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+        echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+        brew bundle install --file=~/.Brewfile
     fi
 }
 
@@ -119,10 +131,11 @@ main() {
 
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")
 print_info "System: $UNAME"
+main
 if [ "$UNAME" == "linux" ]; then
     execute install_bat
     execute install_zsh
+    install_linuxbrew
 fi
 unset UNAME
-main
 source ~/.zshrc
