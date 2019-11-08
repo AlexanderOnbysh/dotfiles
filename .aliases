@@ -12,8 +12,9 @@ alias ls="command ls ${colorflag}"
 
 alias clear='echo "Nope"'
 alias vim='nvim'
+alias cenv='python3.6 -m venv .env'
 alias clean-docker='docker ps -aq --no-trunc -f status=exited | xargs docker rm && docker images -q --filter dangling=true | xargs docker rmi'
 alias memory='smem -utp'
 alias cat='bat'
 alias myip="ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'"
-alias act=". ./.env/bin/activate"
+alias act=". ./.venv/bin/activate"

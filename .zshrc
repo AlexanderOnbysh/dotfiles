@@ -5,7 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="af-magic"
 
-plugins=(git zsh-syntax-highlighting colored-man-pages copydir zsh-autosuggestions)
+plugins=(git zsh-syntax-highlighting colored-man-pages copydir zsh-autosuggestions vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
@@ -20,3 +20,5 @@ source ~/.aliases
 source ~/.functions
 export PATH="/usr/local/sbin:$PATH"
 
+
+eval $(thefuck --alias)
