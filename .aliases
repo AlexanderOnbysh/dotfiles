@@ -12,7 +12,7 @@ alias ls="command ls ${colorflag}"
 
 alias clear='echo "Nope"'
 alias vim='nvim'
-alias cenv='python3.6 -m venv .env'
+alias cenv='python3.7 -m venv .env'
 alias clean-docker='docker ps -aq --no-trunc -f status=exited | xargs docker rm && docker images -q --filter dangling=true | xargs docker rmi'
 alias memory='smem -utp'
 alias cat='bat'

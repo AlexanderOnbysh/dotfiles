@@ -23,7 +23,6 @@ source ~/.aliases
 source ~/.functions
 
 export PATH="/usr/local/sbin:$PATH"
-export PROMPT="$fg[cyan]%}$USER%{ ${PROMPT}"
 export EDITOR='vim'
 export LANG=en_US.UTF-8
 
