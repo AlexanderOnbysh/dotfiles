@@ -10,3 +10,8 @@ function jupyter_vim() {
     git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding 
     jupyter nbextension enable vim_binding/vim_binding
 }
+
+function okta() {
+    eval $(op signin my)
+    op get totp uto2xdh6nfg7zp34hjkdex6vuy | pbcopy
+}
