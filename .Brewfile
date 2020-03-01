@@ -21,11 +21,12 @@ cask 'postico'
 cask 'postgres'
 cask 'telegram'
 cask 'viber'
-cask 'spectacle'
+cask 'rectangle'
 cask 'teamviewer'
 cask 'vlc'
 cask 'font-hack-nerd-font'
-cask 'polar-bookshelf'
+cask 'lulu'
+cask 'knockknock'
 
 # mas 'Xcode', id: 497799835
 
