@@ -15,3 +15,65 @@ function okta() {
     eval $(op signin my)
     op get totp uto2xdh6nfg7zp34hjkdex6vuy | pbcopy
 }
+
+function memlog() {
+        PID=$1
+        LOG=./$PID.log
+        PNG=./$PID.log.png
+
+        echo recording memory usage for PID $PID
+        echo log file: $LOG
+        echo png file: $PNG
+
+        while true; do
+            ps --pid $PID -o pid=,%mem=,vsz= >> $LOG
+            gnuplot -e "set term png small size 800,600; set output \"$PNG\"; set ylabel \"VSZ\"; set y2label \"%MEM\"; set ytics nomirror; set y2tics nomirror in; set yrange [*:*]; set y2range [*:*]; plot \"$LOG\" using 3 with lines axes x1y1 title \"VSZ\", \"$LOG\" using 2 with lines axes x1y2 title \"%MEM\""
+
+            sleep 1
+        done
+}
+
+function aws_config() {
+        key_regex="aws_access_key_id = (.*)"
+        secret_regex="aws_secret_access_key = (.*)"
+
+        output=$(pbpaste)
+        if [[ $output =~ $key_regex ]]; then
+            key=$match[1]
+            aws configure set aws_access_key_id $key
+        else
+            echo "unable to parse key"
+        fi
+
+        if [[ $output =~ $secret_regex ]]; then
+            secret=$match[1]
+            aws configure set aws_secret_access_key $secret
+        else
+            echo "unable to parse secrete"
+        fi
+
+
+
+}
+
+function extract()      # Handy Extract Program
+{
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1     ;;
+            *.tar.gz)    tar xvzf $1     ;;
+            *.bz2)       bunzip2 $1      ;;
+            *.rar)       unrar x $1      ;;
+            *.gz)        gunzip $1       ;;
+            *.tar)       tar xvf $1      ;;
+            *.tbz2)      tar xvjf $1     ;;
+            *.tgz)       tar xvzf $1     ;;
+            *.zip)       unzip $1        ;;
+            *.Z)         uncompress $1   ;;
+            *.7z)        7z x $1         ;;
+            *)           echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
+}
