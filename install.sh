@@ -85,17 +85,6 @@ install_zsh() {
     fi
 }
 
-install_linuxbrew() {
-    if test -x $(which brew); then
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-        test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-        test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-        test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-        echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
-        brew bundle install --file=~/.Brewfile
-    fi
-}
-
 main() {
 
     local i=""
@@ -135,7 +124,6 @@ main
 if [ "$UNAME" == "linux" ]; then
     execute install_bat
     execute install_zsh
-    install_linuxbrew
 fi
 unset UNAME
 source ~/.zshrc
